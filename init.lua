@@ -19,6 +19,7 @@
 ========                                                     ========
 =====================================================================
 =====================================================================
+ // Add nvim-tee to this config so that it doesn't break other functionalities and plugins in this file
 
 What is Kickstart?
 
@@ -83,6 +84,12 @@ I hope you enjoy your Neovim journey,
 
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
+
+-- Disable netrw
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+
+vim.opt.termguicolors = true
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -166,6 +173,14 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+
+--Buffer keymaps 
+vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { desc = 'Go to [B]uffer [N]ext', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { desc = 'Go to [B]uffer [P]revious', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = '[B]uffer [D]elete', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>bl', ':buffers<CR>', { desc = '[B]uffer [L]ist', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>bt', ':b#<CR>', { desc = '[B]uffer [T]oggle', noremap = true, silent = true })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -286,6 +301,7 @@ require('lazy').setup({
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+        ['<leader>b'] = { name = '[B]uffers', _ = 'which_key_ignore' },
       }
     end,
   },
