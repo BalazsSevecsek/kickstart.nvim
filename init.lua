@@ -409,7 +409,12 @@ require('lazy').setup({
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-
+      'rust-lang/rust-analyzer',
+      {
+        'pmizio/typescript-tools.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+        opts = {}
+      },
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
@@ -518,6 +523,14 @@ require('lazy').setup({
               callback = vim.lsp.buf.clear_references,
             })
           end
+
+          -- Add an autocommand to run `EslintFixAll` on buffer write
+          if client.name == "eslint" then
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              buffer = event.buf,
+              command = "EslintFixAll",
+            })
+          end
         end,
       })
 
@@ -565,6 +578,8 @@ require('lazy').setup({
             },
           },
         },
+        eslint = {},
+        rust_analyzer= {}
       }
 
       -- Ensure the servers and tools above are installed
@@ -580,6 +595,8 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'eslint', -- Used to lint JavaScript and TypeScript
+        'rust_analyzer'
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -614,6 +631,10 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        rust = { "rustfmt", lsp_format = "fallback" },
+        javascript = { "prettierd", "prettier", stop_after_first = true },
+        htmlbeautify = { "beautify"},
+        rustywind = { "rustywind" },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
