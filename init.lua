@@ -182,6 +182,9 @@ vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = '[B]uffer [D]elete', 
 vim.keymap.set('n', '<leader>bl', ':buffers<CR>', { desc = '[B]uffer [L]ist', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>bt', ':b#<CR>', { desc = '[B]uffer [T]oggle', noremap = true, silent = true })
 
+--Nvim Tree
+vim.keymap.set('n', '<leader>ft', ':NvimTreeToggle<CR>', { desc = '[N]vim [T]ree toggle', noremap = true, silent = true })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -302,6 +305,7 @@ require('lazy').setup({
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>b'] = { name = '[B]uffers', _ = 'which_key_ignore' },
+        ['<leader>f'] = { name = '[F]ile Tree', _ = 'which_key_ignore' },
       }
     end,
   },
@@ -873,7 +877,7 @@ require('lazy').setup({
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
+ { import = 'custom.plugins' },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
