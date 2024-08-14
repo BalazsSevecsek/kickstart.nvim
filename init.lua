@@ -186,6 +186,7 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       'rust-lang/rust-analyzer',
+      'sqls-server/sqls',
       {
         'pmizio/typescript-tools.nvim',
         dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
@@ -361,6 +362,7 @@ require('lazy').setup({
         docker_compose_language_service = {},
         basedpyright = {},
         bashls = {},
+        sqls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -383,6 +385,7 @@ require('lazy').setup({
         'jsonls', --json language server,
         'basedpyright', --python language server
         'bashls', --bash language server
+        'sqls', --postgres language server
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
