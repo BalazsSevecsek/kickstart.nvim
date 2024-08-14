@@ -373,7 +373,12 @@ require('lazy').setup({
           },
         },
         eslint = {},
-        rust_analyzer= {}
+        rust_analyzer= {},
+        jsonls = {},
+        dockerls = {},
+        docker_compose_language_service = {},
+        basedpyright = {},
+        bashls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -390,7 +395,12 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'eslint', -- Used to lint JavaScript and TypeScript
-        'rust_analyzer'
+        'rust_analyzer',
+        'docker_compose_language_service',
+        'dockerls',
+        'jsonls', --json language server,
+        'basedpyright', --python language server
+        'bashls', --bash language server
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
