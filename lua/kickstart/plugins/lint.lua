@@ -6,7 +6,7 @@ return {
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
-        markdown = { 'markdownlint', 'jsonlint', 'htmlhint', 'hadolint', 'yamllint' },
+        markdown = { 'markdownlint', 'jsonlint', 'htmlhint', 'hadolint', 'yamllint', 'clippy', 'eslint', 'pylint', 'luac'},
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
