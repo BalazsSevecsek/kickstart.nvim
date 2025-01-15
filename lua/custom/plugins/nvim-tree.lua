@@ -1,5 +1,8 @@
 return {
   'nvim-tree/nvim-tree.lua',
+  dependencies = {
+    'akinsho/bufferline.nvim',
+  },
   config = function()
     local function my_on_attach(bufnr)
       local api = require "nvim-tree.api"
@@ -32,6 +35,17 @@ return {
         dotfiles = true,
       },
     })
-
+    require("bufferline").setup({
+        options = {
+            offsets = {
+                {
+                    filetype = "NvimTree",
+                    text = "Nvim Tree",
+                    separator = true,
+                    text_align = "left"
+                }
+            },
+        }
+    })
   end,
 }
