@@ -81,6 +81,12 @@ vim.opt.inccommand = 'split'
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
+--hey
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = true
+
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
@@ -95,7 +101,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 
---Buffer keymaps 
+--Buffer keymaps
 vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { desc = 'Go to [B]uffer [N]ext', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { desc = 'Go to [B]uffer [P]revious', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = '[B]uffer [D]elete', noremap = true, silent = true })
@@ -178,8 +184,8 @@ require('lazy').setup({
   --  This is equivalent to:
   --    require('Comment').setup({})
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-  { 'Bilal2453/luvit-meta', lazy = true },
+  { 'numToStr/Comment.nvim',    opts = {} },
+  { 'Bilal2453/luvit-meta',     lazy = true },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
