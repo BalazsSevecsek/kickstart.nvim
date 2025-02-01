@@ -56,7 +56,7 @@ vim.opt.updatetime = 250
 -- sequence time to wait for key sequences
 vim.opt.timeoutlen = 250
 
--- disable netrw (file manager)
+-- disable netrw (file manager) needed for nvim tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -83,4 +83,13 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 
 -- Show which line your cursor is on
---vim.opt.cursorline = true
+vim.opt.cursorline = true
+
+--vim.g.blamer_enabled = true
+
+--session info that is saved by nvim
+vim.o.sessionoptions = "buffers,curdir,folds,tabpages,winsize,localoptions"
+
+--treesitter folding lines
+--vim.wo.foldmethod = 'expr'
+--vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
