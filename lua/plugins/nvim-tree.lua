@@ -26,7 +26,11 @@ return {
         update_cwd = true,
       },
       view = {
-        adaptive_size=true
+        width = {
+          min = 30,
+          max = 150,
+          padding = 1
+        }
       },
       renderer = {
         group_empty = true,

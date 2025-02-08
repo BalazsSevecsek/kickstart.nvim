@@ -54,7 +54,7 @@ vim.opt.isfname:append("@-@")
 --reduces time before triggering events
 vim.opt.updatetime = 250
 -- sequence time to wait for key sequences
-vim.opt.timeoutlen = 250
+vim.opt.timeoutlen = 500
 
 -- disable netrw (file manager) needed for nvim tree
 vim.g.loaded_netrw = 1
