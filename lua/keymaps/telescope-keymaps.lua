@@ -36,9 +36,3 @@ vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iag
 vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
 vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-
-vim.keymap.set('n', 'gr', function() require('telescope.builtin').lsp_references() end, { noremap = true, silent = true })
-vim.keymap.set('n', 'gR', function() require('telescope.builtin').lsp_implementations() end,
-  { noremap = true, silent = true })
-vim.keymap.set('n', 'gw', function() require('telescope.builtin').lsp_incoming_calls() end,
-  { noremap = true, silent = true })
