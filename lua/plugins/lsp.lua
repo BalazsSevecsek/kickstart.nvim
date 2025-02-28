@@ -19,9 +19,12 @@ return {
 
     -- Schema information
     "b0o/SchemaStore.nvim",
+
+    -- 'WhoIsSethDaniel/mason-tool-installer.nvim',
   },
   config = function()
     require("neodev").setup()
+    local lspconfig = require('lspconfig')
     -- Change diagnostic symbols in the sign column (gutter)
     if vim.g.have_nerd_font then
       local signs = {
@@ -54,7 +57,24 @@ return {
           },
         },
       },
-      biome = {}, --js/ts
+      ts_ls = {
+        -- codeActionOnSave = {
+        --   enable = true,
+        --   mode = "all"
+        -- },
+        -- completions = {
+        --   completeFunctionCalls = true
+        -- },
+        -- init_options = {
+        --   preferences = {
+        --     includeCompletionsWithSnippetText = true,
+        --     importModuleSpecifierPreference = "non-relative", -- Helps with ESM imports
+        --   },
+        -- },
+        root_dir = require('lspconfig.util').root_pattern("package.json"),
+        -- filetypes = { "javascript", "typescript" },
+      },
+      -- biome = {}, --js/ts
       eslint = {},
       pylsp = {},
       rust_analyzer = {},
@@ -69,7 +89,6 @@ return {
       denols = {},
       htmx = {},
       cssls = {},
-      stylua = {},
     }
 
     -- Ensure the servers and tools above are installed by Mason
@@ -78,6 +97,13 @@ return {
     --  Add additional capabilities to the server
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+    --not sure I need this
+    -- vim.list_extend(ensure_installed, {
+    --   'stylua',
+    -- })
+
+    -- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
 
     require('mason-lspconfig').setup({
