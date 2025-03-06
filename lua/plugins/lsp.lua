@@ -58,23 +58,11 @@ return {
         },
       },
       ts_ls = {
-        -- codeActionOnSave = {
-        --   enable = true,
-        --   mode = "all"
-        -- },
-        -- completions = {
-        --   completeFunctionCalls = true
-        -- },
-        -- init_options = {
-        --   preferences = {
-        --     includeCompletionsWithSnippetText = true,
-        --     importModuleSpecifierPreference = "non-relative", -- Helps with ESM imports
-        --   },
-        -- },
-        root_dir = require('lspconfig.util').root_pattern("package.json"),
-        -- filetypes = { "javascript", "typescript" },
+        root_dir = require('lspconfig.util').root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
+        single_file_support = false,
+        format = false
       },
-      -- biome = {}, --js/ts
+      biome = {},
       eslint = {},
       pylsp = {},
       rust_analyzer = {},
@@ -86,24 +74,20 @@ return {
       sqls = {},
       gopls = {},
       html = {},
-      denols = {},
-      htmx = {},
+      -- denols = {},
+      -- htmx = {},
       cssls = {},
     }
 
     -- Ensure the servers and tools above are installed by Mason
     local ensure_installed_servers = vim.tbl_keys(servers or {})
+    vim.list_extend(ensure_installed_servers, {
+      --add additional components
+    })
 
     --  Add additional capabilities to the server
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-    --not sure I need this
-    -- vim.list_extend(ensure_installed, {
-    --   'stylua',
-    -- })
-
-    -- require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
 
     require('mason-lspconfig').setup({
