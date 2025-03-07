@@ -109,6 +109,15 @@ return {
         --map showing function signature in insert mode
         map('<C-s>', vim.lsp.buf.signature_help, '[S]ignature', 'i')
 
+
+        -- remove unused imports
+        vim.keymap.set("n", "<leader>oi", function()
+          vim.lsp.buf.code_action({
+            context = { only = { "source.organizeImports" } },
+            apply = true,
+          })
+        end, { desc = "[O]rganize [I]mport" })
+
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
         --    See `:help CursorHold` for information about when this is executed

@@ -6,6 +6,9 @@
   If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
 --]]
 
+-- for autosession
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 -- Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
