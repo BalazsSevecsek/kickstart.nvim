@@ -222,6 +222,7 @@ return {
         },
       },
       eslint = {},
+      ts_ls = {},
       rust_analyzer = {},
       jsonls = {},
       dockerls = {},
@@ -248,6 +249,7 @@ return {
     vim.list_extend(ensure_installed, {
       'stylua', -- Used to format Lua code
       'eslint', -- Used to lint JavaScript and TypeScript
+      'ts_ls',
       'rust_analyzer',
       'docker_compose_language_service',
       'dockerls',
