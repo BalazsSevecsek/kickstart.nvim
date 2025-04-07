@@ -1,10 +1,4 @@
--- vim.keymap.set('n', 'gr', function() require('telescope.builtin').lsp_references() end, { noremap = true, silent = true })
--- vim.keymap.set('n', 'gR', function() require('telescope.builtin').lsp_implementations() end,
---   { noremap = true, silent = true })
--- vim.keymap.set('n', 'gw', function() require('telescope.builtin').lsp_incoming_calls() end,
---   { noremap = true, silent = true })
---vim.keymap.set("n", "gd", vim.lsp.buf.implementation)
-
+-- vim.keymap.set("n", "gd", vim.lsp.buf.implementation)
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -26,6 +20,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Find references for the word under your cursor.
     map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+
+    vim.keymap.set('n', 'gw', function() require('telescope.builtin').lsp_incoming_calls() end,
+      { noremap = true, silent = true, desc = 'LSP: [Go]to [W]incoming calls' })
 
     -- Jump to the implementation of the word under your cursor.
     --  Useful when your language has ways of declaring types without an actual implementation.
@@ -55,6 +52,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- WARN: This is not Goto Definition, this is Goto Declaration.
     --  For example, in C this would take you to the header.
     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+    -- Goto File
+    --map('gf', vim.lsp.buf.definition, '[G]oto [F]ile')
+    vim.keymap.set("n", "gf", vim.lsp.buf.definition, { desc = 'LSP: [G]oto [F]ile', noremap = true })
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.

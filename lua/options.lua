@@ -14,6 +14,9 @@ vim.opt.guicursor = ""
 vim.opt.number = true
 -- vim.wo.relativenumber = true
 
+--recursively adds files to path
+-- vim.opt.path:append("**")
+
 vim.opt.smartindent = true
 
 --no wrapping of lines
@@ -70,7 +73,7 @@ vim.opt.spell = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
---vim.cmd('colorscheme monokai-pro')
+-- vim.cmd('colorscheme monokai-pro')
 
 vim.g.have_nerd_font = false
 

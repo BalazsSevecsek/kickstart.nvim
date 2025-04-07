@@ -62,10 +62,25 @@ return {
         single_file_support = false,
         format = false
       },
-      biome = {},
+      -- biome = {},
       eslint = {},
       pylsp = {},
-      rust_analyzer = {},
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = {
+              command = "clippy",
+              extraArgs = { "--", "-D", "warnings" }, -- ✅ Treat warnings as errors
+            },
+            inlayHints = {
+              enable = true,
+              typeHints = true,
+              parameterHints = true,
+              chainingHints = true,
+            },
+          }
+        },
+      },
       jsonls = {},
       dockerls = {},
       docker_compose_language_service = {},
@@ -88,7 +103,6 @@ return {
     --  Add additional capabilities to the server
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
 
     require('mason-lspconfig').setup({
       automatic_installation = true,
