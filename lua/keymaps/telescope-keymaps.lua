@@ -36,3 +36,10 @@ vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iag
 vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
 vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+
+
+if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+  map('<leader>th', function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+  end, '[T]oggle Inlay [H]ints')
+end

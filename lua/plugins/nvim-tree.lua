@@ -14,8 +14,8 @@ return {
       -- default mappings
       api.config.mappings.default_on_attach(bufnr)
 
-      -- custom mappings
-      vim.keymap.set('n', '<leader>ft', ':NvimTreeToggle<CR>', opts('[N]vim [T]ree toggle'))
+      -- Nvim tree toggle
+      vim.keymap.set("n", "<leader>tf", "<cmd>NvimTreeToggle<cr>", { desc = "[T]oggle Nvim [T]ree" })
     end
 
     -- OR setup with some options

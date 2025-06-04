@@ -40,6 +40,8 @@ return {
       vim.diagnostic.config { signs = { text = diagnostic_signs } }
     end
 
+
+
     -- Enable the following language servers
     -- example https://github.com/pmizio/typescript-tools.nvim
     local servers = {
@@ -65,6 +67,7 @@ return {
       -- biome = {},
       eslint = {},
       pylsp = {},
+      mojo = {},
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
@@ -73,10 +76,23 @@ return {
               extraArgs = { "--", "-D", "warnings" }, -- ✅ Treat warnings as errors
             },
             inlayHints = {
-              enable = true,
-              typeHints = true,
-              parameterHints = true,
+              bindingModeHints = true,
               chainingHints = true,
+              closingBraceHints = true,
+              closureReturnTypeHints = {
+                enable = true,
+              },
+              lifetimeElisionHints = {
+                enable = "always",
+                useParameterNames = true,
+              },
+              reborrowHints = true,
+              typeHints = {
+                enable = true,
+              },
+              parameterHints = {
+                enable = true,
+              },
             },
           }
         },
@@ -115,6 +131,13 @@ return {
         end,
       },
     })
+
+    -- Automatically enable inlay hints for supported servers
+    if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+      map('<leader>th', function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+      end, '[T]oggle Inlay [H]ints')
+    end
   end,
 }
 

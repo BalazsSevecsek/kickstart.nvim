@@ -53,6 +53,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --  For example, in C this would take you to the header.
     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+    --toggle inlay hints
+    vim.keymap.set("n", "<leader>ih", function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end, { desc = "Toggle Inlay Hints" })
+
+    -- toggle type inlay hint
+    vim.keymap.set("n", "<leader>if", function()
+      vim.lsp.buf.hover()
+    end, { desc = "Show type under cursor" })
+
+
+
+    --hover over something
+    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = true })
+
     -- Goto File
     --map('gf', vim.lsp.buf.definition, '[G]oto [F]ile')
     vim.keymap.set("n", "gf", vim.lsp.buf.definition, { desc = 'LSP: [G]oto [F]ile', noremap = true })

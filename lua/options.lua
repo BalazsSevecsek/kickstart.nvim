@@ -17,6 +17,9 @@ vim.opt.number = true
 --recursively adds files to path
 -- vim.opt.path:append("**")
 
+--use common clipboard with system
+vim.opt.clipboard = "unnamedplus"
+
 vim.opt.smartindent = true
 
 --no wrapping of lines
